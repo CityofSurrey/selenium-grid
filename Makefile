@@ -3,6 +3,7 @@ service := hub
 # Builds, (re)creates, starts, and attaches to containers for a service
 start:
 	@docker-compose up -d
+	@docker-compose scale chrome=5 firefox=5
 	@docker-compose ps
 
 # Stops running containers without removing them
@@ -21,7 +22,7 @@ clean:
 kill:
 	@docker-compose stop
 	@docker-compose rm --force
-	@docker rmi -f selenium-grid_hub
+	@docker rmi -f seleniumgrid_hub
 
 # Pulls latest service images.  (Note: docker-compose pull does not work
 # on private repositories in Windows, hence the Perl work around that calls
